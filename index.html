@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cecil's War</title>
+<meta name="description" content="Day-by-day explorer of Lt John Cecil Bannister's war, 1942–1952, built from the sourced records.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="title">
+    <h1>Cecil's war</h1>
+    <p class="sub">Lt John Cecil Bannister, 229650. Pick a day to see what the records say.</p>
+  </div>
+  <div class="daybox">
+    <button class="nav" id="prevRec" title="Previous record about Cecil (,)">Previous record</button>
+    <div class="day">
+      <label for="dateInput" class="vh">Date</label>
+      <input type="date" id="dateInput" min="1916-01-01" max="1952-12-31">
+      <output id="dayLong" aria-live="polite"></output>
+    </div>
+    <button class="nav" id="nextRec" title="Next record about Cecil (.)">Next record</button>
+  </div>
+</header>
+
+<section class="ribbon-wrap" aria-label="Timeline ribbon">
+  <div class="zoom" role="group" aria-label="Ribbon range">
+    <button data-range="1942-01-01,1946-06-30" class="on">1942–1946</button>
+    <button data-range="1944-10-01,1945-11-15">Italy and Austria</button>
+    <button data-range="1944-11-20,1945-01-15">First weeks</button>
+    <button data-range="1945-03-01,1945-07-01">Spring 1945</button>
+  </div>
+  <div id="ribbon" class="ribbon" tabindex="0" aria-label="Pick a day: use left and right arrow keys"></div>
+  <div class="key">
+    <span class="k k-doc">Cecil, documented</span>
+    <span class="k k-unit">Battalion (not Cecil)</span>
+    <span class="k k-test">Family memory</span>
+    <span class="k k-inf">Inference</span>
+    <span class="k k-gap">No record</span>
+  </div>
+</section>
+
+<main class="body">
+  <section class="mapcol" aria-label="Map">
+    <div id="map"></div>
+    <div class="mapbar">
+      <label><input type="checkbox" id="follow" checked> Follow the day</label>
+      <label>Show
+        <select id="window">
+          <option value="0">this day</option>
+          <option value="3">± 3 days</option>
+          <option value="15" selected>± 2 weeks</option>
+          <option value="45">± 6 weeks</option>
+        </select>
+      </label>
+      <span id="mapcount"></span>
+    </div>
+  </section>
+
+  <section class="panel" aria-label="Details">
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="cecil" aria-selected="true">Cecil</button>
+      <button role="tab" data-tab="bn" aria-selected="false">The battalion</button>
+      <button role="tab" data-tab="list" aria-selected="false">All records</button>
+      <button role="tab" data-tab="letters" aria-selected="false">His letters</button>
+    </nav>
+    <div class="tabbody" id="tab-cecil" role="tabpanel"></div>
+    <div class="tabbody" id="tab-bn" role="tabpanel" hidden></div>
+    <div class="tabbody" id="tab-list" role="tabpanel" hidden></div>
+    <div class="tabbody" id="tab-letters" role="tabpanel" hidden></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Built from the research repository's timeline. Every item carries its source IDs; a battalion location is not proof that Cecil was there. Map tiles are modern maps, not wartime positions. <span id="buildnote"></span></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
