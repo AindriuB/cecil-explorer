@@ -9,7 +9,7 @@ The research repo (github.com/AindriuB/cecil) is the only source of truth.
 This script never edits it; it reads timeline/build/*.json, the narrative
 draft and the letter metadata, and writes trimmed JSON here.
 """
-import argparse, json, re, sys
+import argparse, json, re, subprocess, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent.parent
@@ -82,8 +82,15 @@ def main():
     ap.add_argument("--source", default=str(HERE.parent / "cecil"))
     ap.add_argument("--public", action="store_true",
                     help="omit letters, the story, family testimony and family/civil records")
+    ap.add_argument("--allow-stale", action="store_true", help="skip the check that the source is up to date")
     a = ap.parse_args()
     src = Path(a.source).resolve()
+    if not a.allow_stale:
+        subprocess.run(["git", "-C", str(src), "fetch", "-q"], check=False)
+        st = subprocess.run(["git", "-C", str(src), "status", "-sb"], capture_output=True, text=True).stdout.splitlines()
+        if st and "behind" in st[0]:
+            sys.exit(f"{src} is behind GitHub ({st[0].strip()}). Run 'git pull' there first, "
+                     "or pass --allow-stale to use it anyway.")
     tl = load(src / "timeline/build/timeline.json")
     net = load(src / "timeline/build/network.json")
 
