@@ -153,6 +153,8 @@ blockquote.voice {
 .filters { display: flex; flex-wrap: wrap; gap: 10px; font-size: .85rem; margin-bottom: 8px; }
 .foot { padding: 6px 20px 16px; color: var(--muted); font-size: .8rem; }
 .foot p { margin: 0; max-width: 110ch; }
+.foot p + p { margin-top: 6px; }
+.foot a { color: inherit; }
 
 details.period { margin: 10px 0; font-size: .92rem; }
 details.period summary, details summary { cursor: pointer; color: var(--ink); }

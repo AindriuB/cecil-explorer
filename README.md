@@ -33,3 +33,7 @@ Then open <http://localhost:8765>. Opening `index.html` as a file does not work,
 - Ink blue: Cecil, documented. Khaki: the battalion (not proof Cecil was there). Amber: family memory. Violet: inference. Hatched: no record.
 - Every item shows its source IDs from the research registers.
 - Map tiles are modern OpenStreetMap maps, not wartime positions.
+
+## Credits
+
+The 2nd Battalion's war diary and officer returns come largely from the transcriptions and photographs on the [Irish Brigade website](https://www.irishbrigade.co.uk/) (Richard and Edmund O'Sullivan). Company orders and the June 1945 roll come from the [Inniskillings Museum](https://www.inniskillingsmuseum.com/). Source IDs on every item point back to the research registers.
